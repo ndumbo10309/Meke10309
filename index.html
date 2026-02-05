@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quick Question 👀</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ffecd2, #fcb69f);
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .box {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      max-width: 90%;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 25px;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    #yes {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    #no {
+      background-color: #f44336;
+      color: white;
+    }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      max-width: 90%;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h1>Hey you 👋</h1>
+    <p>
+      Would you maybe want to hang out next weekend?<br>
+      Nothing fancy — just chilling and cooking a meal together 🙂
+    </p>
+
+    <button id="yes" onclick="yesClicked()">Yeah, that sounds nice 😊</button>
+    <button id="no" onclick="noClicked()">Nah 🙃</button>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <h2 id="modalText"></h2>
+      <br>
+      <button onclick="closeModal()">Okay okay…</button>
+    </div>
+  </div>
+
+  <script>
+    const messages = [
+      "Are you sure? 🤨",
+      "Hmmmm… maybe you misclicked. Try again 😌",
+      "Okay but… let’s think about this for a second 😐",
+      "Yeah no, I don’t believe that one 😂",
+      "Be serious for a moment. Try again 😒",
+      "That click had zero conviction 😭",
+      "At this point you’re just clicking things 💀",
+      "Okay listen… NO is clearly not working today 🙃",
+      "Let’s not fight destiny 😌 Try YES."
+    ];
+
+    let noCount = 0;
+
+    function noClicked() {
+      const modal = document.getElementById("modal");
+      const modalText = document.getElementById("modalText");
+
+      const current = messages[Math.min(noCount, messages.length - 1)];
+      modalText.textContent = current;
+
+      noCount++;
+      modal.style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
+
+    function yesClicked() {
+      document.body.innerHTML = `
+        <div style="
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          height:100vh;
+          font-family:Arial;
+          text-align:center;
+          background:linear-gradient(135deg,#d4fc79,#96e6a1);
+        ">
+          <h1>
+            There we go 😌🍳<br><br>
+            Hanging out and cooking it is.<br>
+            Looking forward to next weekend 💛
+          </h1>
+        </div>
+      `;
+    }
+  </script>
+
+</body>
+</html>
